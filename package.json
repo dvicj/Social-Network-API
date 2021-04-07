@@ -1,0 +1,30 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "A social network API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvicj/Social-Network-API.git"
+  },
+  "keywords": [
+    "Node",
+    "Mongoose",
+    "MongoDB",
+    "express",
+    "JavaScript"
+  ],
+  "author": "dvicj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dvicj/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/dvicj/Social-Network-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3"
+  }
+}
