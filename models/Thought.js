@@ -1,17 +1,44 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ThoughtSchema = new Schema(
+const ReactionSchema = new Schema(
     {
-        //set custom id
-        thoughtId: {
+        //set custom id to avoid confusion with parent comment_id
+        reactionId: {
             type: Schema.Types.ObjectId,
             default: () => new Types._ObjectId()
         },
+        reactionBody: {
+            type: String, 
+            required: true, 
+            trim: true, 
+            //min. 1 character, max. 280 characters
+            minLength: 1,
+            maxLength: 280
+        },
+        username: {
+            type: String, 
+            required: true
+        },
+        createdAt: {
+            type: Date, 
+            default: Date.now, 
+            get: createdAtVal => dateFormat(createdAtVal)
+        }
+    },
+    {
+        toJSON: {
+            getters: true
+        }
+    }
+);
+
+const ThoughtSchema = new Schema(
+    {
         thoughText: {
             type: String, 
             required: true, 
-            //must be between 1 and 280 characters 
+            //min. 1 character, max. 280 characters
             minLength: 1, 
             maxLength: 280
         },
@@ -22,56 +49,27 @@ const ThoughtSchema = new Schema(
         },
         username: {
             type: String, 
-            required: true
+            required: true,
+            ref: 'User'
         }, 
         //array of nested documents created with the reactionSchema
-        reactions: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Reaction'
-            }
-        ]
+        reactions: [ReactionSchema]
     },
     {
         toJSON: {
+            virtuals: true,
             getters: true
-        }
+        },
+        id:false
     }
 );
 
-const ReactionSchema = new Schema(
-    {
-        reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types._ObjectId()
-        },
-        reactionBody: {
-            type: String, 
-            required: true, 
-            //280 char. maximum
-            maxLength: 280
-        },
-        username: {
-            type: String, 
-            required: true
-        },
-        createdAt: {
-            type: Date, 
-            default: Date.now, 
-            get: createdAtVal => dateFormat(createdAtVal)
-        }
-    },
-    {
-        toJSON: {
-            getters: true
-        }
-    }
-);
 
+const Thought = model('Thought', ThoughtSchema);
+
+//get total count of friends 
 ThoughtSchema.virtual('reactionCount').get(function() {
     return this.reaction.length; 
 });
-
-const Thought = model('Thought', ThoughtSchema);
 
 module.exports = Thought; 

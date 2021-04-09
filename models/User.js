@@ -1,12 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-//validate email 
-var validateEmail = function(email) {
-    var re = `/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$`,
-    return re.test(email)
-};
-
-
 const UserSchema = new Schema(
     {
         username: {
@@ -21,8 +14,7 @@ const UserSchema = new Schema(
             required: 'You need to provide an email address!', 
             unique: true,
             //must match valid email
-            validate: [validateEmail, 'Please enter a valid email address.'],
-            match: [`/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/`, 'Please fill a valid email address']
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address']
             
         },
         //array of _id values referencing Thought model
@@ -50,14 +42,13 @@ const UserSchema = new Schema(
     }
 );
 
+const User = model('User', UserSchema);
+
 //get total friend count of User 
 UserSchema.virtual('friendCount').get(function() {
-    return this.friends.reduce(
-        (total, friends) => total + friends.length + 1,
-        0
-    );
+    return this.friends.length; 
 });
 
-const User = model('User', UserSchema);
+
 
 module.exports = User; 
