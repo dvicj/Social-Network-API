@@ -12,4 +12,9 @@ router
     .put()
     .delete()
 
+router
+    .route('/:userId/friends/:friendId')
+    .post()
+    .delete()
+
 module.exports = router; 
