@@ -50,18 +50,18 @@ Here are some user experience highlights from my page:
 
 An example of the models used:
 
-![user models]()
-![thought models]()
+![user models](https://github.com/dvicj/Social-Network-API/blob/main/images/user%20model.PNG)
+![thought models](https://github.com/dvicj/Social-Network-API/blob/main/images/thought%20model.PNG)
 
 An example of the controllers used: 
 
-![user controller]()
-![thought controller]()
+![user controller](https://github.com/dvicj/Social-Network-API/blob/main/images/user%20controller.PNG)
+![thought controller](https://github.com/dvicj/Social-Network-API/blob/main/images/thought%20controller.PNG)
 
 An example of the routes used: 
 
-![user routes]()
-![thought routes]()
+![user routes](https://github.com/dvicj/Social-Network-API/blob/main/images/user%20routes.PNG)
+![thought routes](https://github.com/dvicj/Social-Network-API/blob/main/images/thought%20routes.PNG)
 
 
 ## Credits
