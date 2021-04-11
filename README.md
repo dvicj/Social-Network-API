@@ -2,7 +2,7 @@
 
 Hello, and welcome to my README! This is for my Week 18 Challenge, which was to create a Social Network API using NoSQL. 
 
-[Please check out this video for a demonstration.]()
+[Please check out this video for a demonstration.](https://drive.google.com/file/d/1TaqXYkgPsmVZRMmKomO7F3OCopcsGUU-/view?usp=sharing)
 
 
 It was my job to ensure my Social Network API had the following features:
